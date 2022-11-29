@@ -156,4 +156,28 @@ puts shoe_size("Ben Gordon")
 def team_colors team_name
   team_name == "Brooklyn Nets" ? game_hash[:home][:colors] : game_hash[:away][:colors]
 end
-# binding.pry
+
+def team_names 
+  [game_hash[:home][:team_name], game_hash[:away][:team_name]]
+end
+# puts team_names
+
+# helper method for player_numbers method
+def get_team_by_name name
+  game_hash[:home][:team_name] == name ? game_hash[:home] : game_hash[:away]
+end
+
+def player_numbers team_name
+  # using helper method
+  get_team_by_name(team_name)[:players].map do |player| player[:number] end
+end
+# puts player_numbers ("Brooklyn Nets")
+
+def player_stats name
+  # uses helper method
+  get_player name
+end
+
+def big_shoe_rebounds
+  all_players.max_by do |player| player[:shoe] end[:rebounds]
+end
