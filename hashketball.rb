@@ -1,4 +1,6 @@
 # Write your code below game_hash
+require "pry"
+
 def game_hash
   {
     home: {
@@ -127,3 +129,31 @@ def game_hash
 end
 
 # Write code here
+# helper method for num_points_scored
+def all_players
+  game_hash[:home][:players] + game_hash[:away][:players]
+end
+
+#helper method because we repeated the code to find player
+def get_player name
+  all_players.find do |player| player[:player_name] === name end
+end
+
+def num_points_scored (name)
+  # all_players.find do |player| player[:player_name] === name end[:points]
+  # replace line of code above with usage of helper method
+  get_player(name)[:points]
+end
+# puts num_points_scored("Brook Lopez")
+
+def shoe_size (name)
+  # all_players.find do |player| player[:player_name] == name end [:shoe]
+  # replace line of code above with usage of helper method
+  get_player(name)[:shoe]
+end
+puts shoe_size("Ben Gordon")
+
+def team_colors team_name
+  team_name == "Brooklyn Nets" ? game_hash[:home][:colors] : game_hash[:away][:colors]
+end
+# binding.pry
